@@ -1,0 +1,2 @@
+include .env.example AGENTS.md CONTRIBUTING.md
+recursive-include tests *.py
