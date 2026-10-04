@@ -13,6 +13,7 @@ from rich.progress import (
     TimeRemainingColumn,
     TransferSpeedColumn,
 )
+from rich.table import Column
 from rich.text import Text
 
 from .models import Event
@@ -21,22 +22,33 @@ from .models import Event
 class ExportProgress:
     def __init__(self, console: Console):
         self.console = console
+        description_width = min(32, max(12, console.width // 3))
         self.overall = Progress(
-            SpinnerColumn(),
-            TextColumn("{task.description}", markup=False),
-            BarColumn(),
-            MofNCompleteColumn(),
-            TimeRemainingColumn(),
+            SpinnerColumn(table_column=Column(width=1, no_wrap=True)),
+            TextColumn(
+                "{task.description}",
+                markup=False,
+                table_column=Column(width=description_width, no_wrap=True),
+            ),
+            BarColumn(bar_width=None, table_column=Column(ratio=1)),
+            MofNCompleteColumn(table_column=Column(width=13, no_wrap=True)),
+            TimeRemainingColumn(table_column=Column(width=8, no_wrap=True)),
             console=console,
+            expand=True,
         )
         self.files = Progress(
-            TextColumn("{task.description}", markup=False),
-            BarColumn(),
-            TaskProgressColumn(),
-            DownloadColumn(),
-            TransferSpeedColumn(),
-            TimeRemainingColumn(),
+            TextColumn(
+                "{task.description}",
+                markup=False,
+                table_column=Column(width=description_width, no_wrap=True),
+            ),
+            BarColumn(bar_width=None, table_column=Column(ratio=1)),
+            TaskProgressColumn(table_column=Column(width=4, no_wrap=True)),
+            DownloadColumn(table_column=Column(width=17, no_wrap=True)),
+            TransferSpeedColumn(table_column=Column(width=12, no_wrap=True)),
+            TimeRemainingColumn(table_column=Column(width=8, no_wrap=True)),
             console=console,
+            expand=True,
         )
         self.task = self.overall.add_task("Discovering course files", total=None)
         self.active: dict[str, int] = {}
