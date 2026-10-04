@@ -103,5 +103,11 @@ tests/                       # Offline automated tests
 pyproject.toml               # Package, command, dependencies, and development tools
 ```
 
+## Acknowledgements
+
+Thanks to [Olivier Truong](https://github.com/olivier-truong/) for his Blackboard
+downloader project, which used web scraping and served as the basis for this
+project's login implementation.
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for development guidelines.
 Licensed under [GPL-3.0-only](LICENSE).
