@@ -4,7 +4,7 @@
 
 Follow the installation instructions in the [README](README.md), then work
 inside the `.venv` environment. Development dependencies are declared in
-`pyproject.toml`; no application dependencies have been selected yet.
+`pyproject.toml`.
 
 ## Code, documentation, and tests
 
@@ -15,8 +15,8 @@ inside the `.venv` environment. Development dependencies are declared in
   appropriate.
 - Add or update tests for each behavior change.
 - Run `python -m ruff check .`, `python -m ruff format --check .`, and
-  `python -m pytest` before committing. During initialization, the absence of
-  code and tests is expected; pytest exits with code 5.
+  `python -m pytest` before committing. Tests must run without Blackboard
+  credentials or network access. Use simulated HTTP and browser responses.
 - Keep documentation consistent with the available functionality.
 - Do not track Blackboard credentials, cookies, tokens, or downloaded files.
   Use `downloads/` for local downloads.

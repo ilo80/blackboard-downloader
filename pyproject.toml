@@ -18,6 +18,9 @@ dependencies = [
     "rich>=13.9,<15",
 ]
 
+[project.scripts]
+blackboard-downloader = "blackboard_downloader.cli:main"
+
 [project.optional-dependencies]
 dev = [
     "build>=1.2",
